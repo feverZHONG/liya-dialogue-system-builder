@@ -30,7 +30,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(BASE)
 ROLE_ROOT = os.environ.get("DLG_ROLE_ROOT") or os.path.join(PROJECT_ROOT, "台词角色库")
 
-TAG_RE = re.compile(r"^\[([^\]]+)\]\s*(.+)$")
+TAG_RE = re.compile(r"^\[([^\]]+)\]\s*(.*)$")   # 内容可以为空（占位行）——脚手架生成后会去掉行尾空格
 
 
 def load_cfg(role_dir):
@@ -77,22 +77,27 @@ def main():
         print("  台词                 无标注 → 待人工归类")
         sys.exit(0)
 
-    tagged, bare, invalid = [], [], []
+    tagged, bare, invalid, placeholder = [], [], [], []
     for fn in files:
         with open(os.path.join(material_dir, fn), "r", encoding="utf-8") as f:
             for ln, line in enumerate(f, 1):
                 line = line.strip()
-                if not line or line.startswith("#"):
+                if not line or line.startswith("#") or line.startswith("<!--"):
                     continue
                 m = TAG_RE.match(line)
                 if not m:
                     bare.append((fn, ln, line))
                     continue
+                text = m.group(2).strip()
+                if not text:
+                    # 标了格、内容空着 → 占位行（dlg fill 生成脚手架时用），不入库
+                    placeholder.append((fn, ln, m.group(1).strip()))
+                    continue
                 key = valid_key(m.group(1).strip(), cfg)
                 if key is None:
-                    invalid.append((fn, ln, m.group(1).strip(), m.group(2).strip()))
+                    invalid.append((fn, ln, m.group(1).strip(), text))
                 else:
-                    tagged.append((fn, ln, key, m.group(2).strip()))
+                    tagged.append((fn, ln, key, text))
 
     print("=" * 60)
     print(f"素材提炼 · {args.role}（维度: {' | '.join(dims)}）")
@@ -101,6 +106,8 @@ def main():
     print(f"  已标注   : {len(tagged)} 条 → 可自动入库")
     print(f"  未标注   : {len(bare)} 条 → 待人工归类")
     print(f"  无效标注 : {len(invalid)} 条 → 格 key 与维度不匹配")
+    if placeholder:
+        print(f"  空占位   : {len(placeholder)} 条 → 标了格、还没填内容（不入库）")
     if tagged:
         print("-" * 60)
         print("已标注预览（--apply 后并入配置）:")

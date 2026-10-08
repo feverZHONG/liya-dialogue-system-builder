@@ -38,7 +38,7 @@
 
 ## 工作台（同仓 `toolkit/`）
 
-一条 CLI 走完全程，17 个子命令，零第三方依赖、Python 3.8+：
+一条 CLI 走完全程，18 个子命令，零第三方依赖、Python 3.8+：
 
 ```bash
 dlg new <角色>                          # 建脚手架（空格子 + 通用模板）
@@ -48,6 +48,7 @@ dlg gen|cover <角色>                     # 生成引擎 / 覆盖率报告
 dlg run <角色> --batch 10                # 跑起来（也支持 --interactive / --input / --stdin）
 dlg log <角色>                           # 日志 → 兜底占比 / 高频格子 / 迭代建议
 dlg rhythm <角色>                        # 句式节奏体检（加密前必跑）
+dlg fill <角色> [--apply]                # 日志 → 补哪一格（三张清单，可生成脚手架）
 dlg audit / dlg selftest                 # 一键体检 / 回归自检
 ```
 

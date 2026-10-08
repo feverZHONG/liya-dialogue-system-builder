@@ -19,7 +19,7 @@ skill 是方法论，**工作台是执行层**——画格子、质量闸、生�
 
 - **位置**：`toolkit/台词系统/`（17 个脚本 + `dlg` CLI；`toolkit/台词角色库/<角色>/` 每角色一档，自带一个可直接跑的示例角色）
 - **装薄壳**：`python3 toolkit/台词系统/16_安装.py --bin-dir <PATH 里的目录>` → 之后直接敲 `dlg`
-- **常用**：`dlg new <角色>` 建脚手架｜`dlg gen|cover <角色>` 生成+验证｜`dlg rhythm <角色>` **句式节奏体检**（加密前必跑）｜`dlg seed <角色> --apply` 素材入库｜`dlg audit` 一键体检｜`dlg selftest` 回归自检
+- **常用**：`dlg new <角色>` 建脚手架｜`dlg gen|cover <角色>` 生成+验证｜`dlg rhythm <角色>` **句式节奏体检**（加密前必跑）｜`dlg seed <角色> --apply` 素材入库｜`dlg fill <角色>` **日志 → 补哪一格**（三张清单）｜`dlg audit` 一键体检｜`dlg selftest` 回归自检
 - **角色库另放**：`export DLG_ROLE_ROOT=<目录>`，或 `dlg install --role-root <目录>` 写进薄壳
 - **完整说明**：`toolkit/README.md`（架构、全量 CLI 表、配置格式、引擎协议）
 
@@ -60,6 +60,10 @@ python3 toolkit/台词系统/07_验证覆盖率.py 配置.json [--trials 20000]
 ### Step 6 交付
 
 交付内容：`台词配置.json`（可再改再生成）+ `engine.py`（运行产物）。接入外部系统时，把触发上下文以 dict 传入 `reply()` 即可。
+
+### Step 7 迭代（跑起来之后）
+
+`dlg log <角色>` 看兜底占比与高频格子；`dlg fill <角色>` 更进一步——把运行日志对成三张清单：**哪一格该补变体（高频 × 变体少）、哪一格还没台词（触发过却只吃兜底）、哪一格配了却从没被触发（冷格子）**。`--apply` 生成 `<角色>/素材/待补台词.md`，每个待补格留一行 `[维度1|维度2] `，填好后 `dlg seed <角色> --apply` 回灌（自动备份 + 去重），再 `dlg gen` → `dlg cover` 看数字动了没。
 
 ## 加密 ≠ 破规律（先量句式，再堆条数）
 

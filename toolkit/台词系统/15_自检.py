@@ -204,6 +204,15 @@ def main():
         except Exception as e:
             results.append(("非交互无回车噪音", False, f"异常: {e}"))
 
+        # 12 补台词清单口径（18 自带 --selftest：变量键不进 key / 兜底归并 / 冷格子判据）
+        try:
+            rc, out = run("18_补台词建议.py", "--selftest")
+            ok_fill = rc == 0 and "全部通过" in out
+            results.append(("补台词清单口径", ok_fill,
+                            "变量键/兜底/冷格子" if ok_fill else "18 --selftest 未过"))
+        except Exception as e:
+            results.append(("补台词清单口径", False, f"异常: {e}"))
+
     passed = sum(1 for _, ok, _ in results if ok)
     total = len(results)
     if not args.quiet:

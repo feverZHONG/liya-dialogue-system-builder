@@ -16,7 +16,7 @@ dialogue-system-builder/
 ├── assets/example_config.json  # 配置示例（复制它当起点）
 ├── scripts/                    # 命题验证实验（可复现证据）
 └── toolkit/                    # ← 本工作台
-    ├── 台词系统/                # 17 个小脚本 + dlg CLI 总入口
+    ├── 台词系统/                # 18 个小脚本 + dlg CLI 总入口
     ├── 台词角色库/小雨/          # 示例角色（24 格全覆盖，可直接跑）
     └── README.md               # 本文件
 ```
@@ -45,6 +45,7 @@ dlg grid "场景:问候,工作;情绪:平静"   # 画格子预览（纯维度，
 dlg gen 小雨                    # 生成引擎
 dlg cover 小雨                  # 覆盖率报告
 dlg run 小雨 --batch 10          # 跑起来
+dlg fill 小雨                    # 日志 → 补哪一格（--apply 生成可填脚手架）
 dlg audit                      # 一键体检全部角色
 dlg selftest                   # 回归自检
 ```
@@ -56,7 +57,7 @@ dlg selftest                   # 回归自检
 3. 质量闸：`dlg check` → `dlg dup` → `dlg rule` → `dlg stock`
 4. 生成与验证：`dlg gen` → `dlg cover`（**兜底后必须 100%**）
 5. 跑起来：`dlg run --batch N` / `--interactive` / `--input 文件.jsonl` / `--stdin`
-6. 迭代：`dlg log` 看兜底占比与高频格子，改配置重跑
+6. 迭代：`dlg log` 看兜底占比与高频格子；`dlg fill` 把日志对成清单——**哪格该补变体 / 哪格还没台词 / 哪格配了却从没被触发**，`--apply` 生成可填脚手架
 7. 收尾：`dlg audit` 一键全质量闸；`dlg rhythm` 量句式节奏（加密前必跑）
 
 ## 架构（八层，全部文字处理）
@@ -73,8 +74,8 @@ dlg selftest                   # 回归自检
 | 生成层 | 配置 → 零依赖引擎 | `06_生成引擎` |
 | 验证层 | 覆盖率/命中率/变体密度报告 | `07_验证覆盖率` |
 | 运行层 | 批量/交互/文件/管道触发 + 日志 | `08_运行演示` |
-| 反馈层 | 日志 → 兜底占比/高频格子/迭代建议 | `09_日志分析` |
-| 治理层 | 一键体检、素材提炼、回归自检、安装部署、句式节奏 | `13`~`17` |
+| 反馈层 | 日志 → 兜底占比/高频格子/迭代建议 · 补哪一格（`dlg fill`） | `09_日志分析`、`18_补台词建议` |
+| 治理层 | 一键体检、素材提炼、回归自检、安装部署、句式节奏、补台词建议 | `13`~`18` |
 
 数据流：**信号（context dict）→ engine.reply(context) → 台词文本**；反馈层从运行日志回灌配置。
 
@@ -99,6 +100,7 @@ dlg selftest                   # 回归自检
 | `dlg selftest` | 15_自检 | 回归自检 | `dlg selftest` |
 | `dlg install` | 16_安装 | 安装/环境自检 | `dlg install [--check] [--role-root DIR]` |
 | `dlg rhythm` | 17_句式节奏 | 句式节奏体检 | `dlg rhythm 小雨 [--top 5]` |
+| `dlg fill` | 18_补台词建议 | 日志 → 补哪一格（三张清单） | `dlg fill 小雨 [--apply]` |
 
 传角色名时自动展开路径：`check/dup/stock/cover → <角色>/台词配置.json`；`gen → 配置 + 默认 -o <角色>/引擎.py`；`rule → 配置 + 默认规则`；`run → 引擎 + 默认 --log <角色>/日志/运行日志.jsonl`；`log → <角色>/日志/运行日志.jsonl`。显式路径写法同样兼容。
 
