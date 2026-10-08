@@ -231,6 +231,15 @@ def main():
         except Exception as e:
             results.append(("引擎状态层口径", False, f"异常: {e}"))
 
+        # 15 语料挖句口径（20 自带 --selftest：嗅探/字段/分组/筛子）
+        try:
+            rc, out = run("20_语料挖句.py", "--selftest")
+            ok_mine = rc == 0 and "全部通过" in out
+            results.append(("语料挖句口径", ok_mine,
+                            "嗅探/字段/分组/筛子" if ok_mine else "20 --selftest 未过"))
+        except Exception as e:
+            results.append(("语料挖句口径", False, f"异常: {e}"))
+
     passed = sum(1 for _, ok, _ in results if ok)
     total = len(results)
     if not args.quiet:

@@ -16,7 +16,7 @@ dialogue-system-builder/
 ├── assets/example_config.json  # 配置示例（复制它当起点）
 ├── scripts/                    # 命题验证实验（可复现证据）
 └── toolkit/                    # ← 本工作台
-    ├── 台词系统/                # 19 个小脚本 + dlg CLI 总入口
+    ├── 台词系统/                # 20 个小脚本 + dlg CLI 总入口
     ├── 台词角色库/小雨/          # 示例角色（24 格全覆盖，可直接跑）
     └── README.md               # 本文件
 ```
@@ -47,6 +47,7 @@ dlg cover 小雨                  # 覆盖率报告
 dlg run 小雨 --batch 10          # 跑起来
 dlg fill 小雨                    # 日志 → 补哪一格（--apply 生成可填脚手架）
 dlg export 小雨 --out 卡.json     # 台词库 → 酒馆角色卡 V2 初稿（含格式验收）
+dlg mine 小雨 对话.jsonl          # 原始对话 → 候选句（按格子分组，人审后 seed）
 dlg audit                      # 一键体检全部角色
 dlg selftest                   # 回归自检
 ```
@@ -61,6 +62,7 @@ dlg selftest                   # 回归自检
 6. 迭代：`dlg log` 看兜底占比与高频格子；`dlg fill` 把日志对成清单——**哪格该补变体 / 哪格还没台词 / 哪格配了却从没被触发**，`--apply` 生成可填脚手架
 7. 收尾：`dlg audit` 一键全质量闸；`dlg rhythm` 量句式节奏（加密前必跑）
 8. 要进酒馆：`dlg export <角色> --out 卡.json` 出卡初稿（V2 格式，占位处标明待精修，含格式验收）
+9. 素材从零开始：`dlg mine <角色> <对话记录>` 从原始对话挖候选句（按格子分组；`--init-keywords` 生成词表骨架）→ 人审挑中的加 `[维度|取值] ` 前缀 → `dlg seed --apply`
 
 ## 架构（八层，全部文字处理）
 
@@ -104,6 +106,7 @@ dlg selftest                   # 回归自检
 | `dlg rhythm` | 17_句式节奏 | 句式节奏体检 | `dlg rhythm 小雨 [--top 5]` |
 | `dlg fill` | 18_补台词建议 | 日志 → 补哪一格（三张清单） | `dlg fill 小雨 [--apply]` |
 | `dlg export` | 19_卡导出 | 台词库 → 酒馆角色卡 V2 初稿 | `dlg export 小雨 --out 卡.json [--genre X]` |
+| `dlg mine` | 20_语料挖句 | 原始对话 → 按格子分组的候选池 | `dlg mine 小雨 对话.jsonl [--speaker X]` |
 
 传角色名时自动展开路径：`check/dup/stock/cover → <角色>/台词配置.json`；`gen → 配置 + 默认 -o <角色>/引擎.py`；`rule → 配置 + 默认规则`；`run → 引擎 + 默认 --log <角色>/日志/运行日志.jsonl`；`log → <角色>/日志/运行日志.jsonl`。显式路径写法同样兼容。
 

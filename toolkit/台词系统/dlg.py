@@ -55,6 +55,7 @@ COMMANDS = {
     "rhythm":  ("17_句式节奏.py", "句式节奏:   dlg rhythm 小雨 [--top 5]（句数分布/行首/签名/序列维）"),
     "fill":    ("18_补台词建议.py", "补台词建议: dlg fill 小雨 [--apply]（日志 → 三张清单）"),
     "export":  ("19_卡导出.py",  "卡导出:    dlg export 小雨 [--out 卡.json]（台词库 → 酒馆角色卡 V2）"),
+    "mine":    ("20_语料挖句.py", "语料挖句:  dlg mine 小雨 对话.jsonl（原始对话 → 按格子分组的候选池）"),
 }
 
 
@@ -68,7 +69,7 @@ def expand(cmd: str, args: list) -> list:
     """把角色名参数展开为实际路径，返回处理后的参数列表"""
     if not args:
         return args
-    if cmd in ("new", "list", "stats", "audit", "seed", "fill", "export"):
+    if cmd in ("new", "list", "stats", "audit", "seed", "fill", "export", "mine"):
         return args  # 吃角色名/无参数，保持透传，不展开路径
     role = role_dir(args[0])
     if role is None:
