@@ -19,7 +19,7 @@ skill 是方法论，**工作台是执行层**——画格子、质量闸、生�
 
 - **位置**：`toolkit/台词系统/`（17 个脚本 + `dlg` CLI；`toolkit/台词角色库/<角色>/` 每角色一档，自带一个可直接跑的示例角色）
 - **装薄壳**：`python3 toolkit/台词系统/16_安装.py --bin-dir <PATH 里的目录>` → 之后直接敲 `dlg`
-- **常用**：`dlg new <角色>` 建脚手架｜`dlg gen|cover <角色>` 生成+验证｜`dlg rhythm <角色>` **句式节奏体检**（加密前必跑）｜`dlg seed <角色> --apply` 素材入库｜`dlg fill <角色>` **日志 → 补哪一格**（三张清单）｜`dlg audit` 一键体检｜`dlg selftest` 回归自检
+- **常用**：`dlg new <角色>` 建脚手架｜`dlg gen|cover <角色>` 生成+验证｜`dlg rhythm <角色>` **句式节奏体检**（加密前必跑）｜`dlg seed <角色> --apply` 素材入库｜`dlg fill <角色>` **日志 → 补哪一格**（三张清单）｜`dlg export <角色> --out 卡.json` **台词库 → 酒馆卡初稿**｜`dlg audit` 一键体检｜`dlg selftest` 回归自检
 - **角色库另放**：`export DLG_ROLE_ROOT=<目录>`，或 `dlg install --role-root <目录>` 写进薄壳
 - **完整说明**：`toolkit/README.md`（架构、全量 CLI 表、配置格式、引擎协议）
 
@@ -118,7 +118,7 @@ python3 toolkit/台词系统/07_验证覆盖率.py 配置.json [--trials 20000]
 
 落地到具体方向前，读 `references/adaptation-notes.md`（从既有的桌宠工程与角色卡脚手架的实践里抄录成的答案清单）：
 - **桌宠（P0）**：触发信号（状态机 + 左键/右键/拖拽/提醒）、互动维度设计、高频状态变体数参考。
-- **角色卡（P1）**：台词去向映射（卡字段）、硬规则约束、台词素材分层（原句优先 → 模板兜底）、空库分配法、质量检查项。
+- **角色卡（P1）**：台词去向映射（卡字段）、硬规则约束、台词素材分层（原句优先 → 模板兜底）、空库分配法、质量检查项。**工具**：`dlg export <角色> --out 卡.json` 直接产出酒馆 V2 卡初稿——台词库能填的字段全填（description 场景块＋`<START>` 示例、first_mes、mes_example、system_prompt 硬规则、tags），要人写的活（动作描写、`{{user}}` 行、PList）留 `【需补充】` 占位；本机有 `sillytavern-cards` 时自动跑它的 validator 验收格式。
 
 要点：原句优先、硬规则外置（口癖/句式是校验项不是维度）、空库先盘点再定变体数。
 

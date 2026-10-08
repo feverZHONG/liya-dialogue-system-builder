@@ -213,6 +213,15 @@ def main():
         except Exception as e:
             results.append(("补台词清单口径", False, f"异常: {e}"))
 
+        # 13 卡导出字段映射（19 自带 --selftest：场景块/开场格/硬规则/V2 双份）
+        try:
+            rc, out = run("19_卡导出.py", "--selftest")
+            ok_card = rc == 0 and "全部通过" in out
+            results.append(("卡导出字段映射", ok_card,
+                            "场景块/开场格/硬规则/双份" if ok_card else "19 --selftest 未过"))
+        except Exception as e:
+            results.append(("卡导出字段映射", False, f"异常: {e}"))
+
     passed = sum(1 for _, ok, _ in results if ok)
     total = len(results)
     if not args.quiet:
