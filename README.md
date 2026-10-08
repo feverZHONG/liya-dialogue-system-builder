@@ -72,28 +72,28 @@ git clone https://github.com/feverZHONG/liya-dialogue-system-builder.git <你的
 
 ## 姊妹仓库
 
-- [liya-subtraction-skill](https://github.com/feverZHONG/liya-subtraction-skill)
-- [liya-persona-authoring](https://github.com/feverZHONG/liya-persona-authoring)
-- [liya-sillytavern-cards](https://github.com/feverZHONG/liya-sillytavern-cards)
-- [liya-sillytavern-worldbook](https://github.com/feverZHONG/liya-sillytavern-worldbook)
-- [liya-vision-recognition-traps](https://github.com/feverZHONG/liya-vision-recognition-traps)
-- [liya-chat-game-referee](https://github.com/feverZHONG/liya-chat-game-referee)
-- [liya-spy-game](https://github.com/feverZHONG/liya-spy-game)
-- [liya-sea-turtle-soup](https://github.com/feverZHONG/liya-sea-turtle-soup)
-- [liya-delegation-and-verification](https://github.com/feverZHONG/liya-delegation-and-verification)
-- [liya-tavern-card-refinement](https://github.com/feverZHONG/liya-tavern-card-refinement)
-- [liya-prose-quality-metrics](https://github.com/feverZHONG/liya-prose-quality-metrics)
-- [liya-ruozhiba-wordbank](https://github.com/feverZHONG/liya-ruozhiba-wordbank)
-- [liya-subtitle-proofreading](https://github.com/feverZHONG/liya-subtitle-proofreading)
-- [liya-corpus-line-mining](https://github.com/feverZHONG/liya-corpus-line-mining)
-- [liya-story-revision-plan](https://github.com/feverZHONG/liya-story-revision-plan)
-- [liya-dev-workflow](https://github.com/feverZHONG/liya-dev-workflow)
-- [liya-news-verification](https://github.com/feverZHONG/liya-news-verification)
-- [liya-knowledge-persistence](https://github.com/feverZHONG/liya-knowledge-persistence)
-- [liya-incident-review](https://github.com/feverZHONG/liya-incident-review)
-- [liya-document-translation](https://github.com/feverZHONG/liya-document-translation)
-- [liya-source-code-investigation](https://github.com/feverZHONG/liya-source-code-investigation)
-- [liya-character-voice-simulation](https://github.com/feverZHONG/liya-character-voice-simulation)
+- [liya-subtraction-skill](https://github.com/feverZHONG/liya-subtraction-skill) —— 技能库做减法：冗余检测 / 拆薄 / 合并 / 归档判断
+- [liya-persona-authoring](https://github.com/feverZHONG/liya-persona-authoring) —— 给 AI agent 写身份文件（SOUL.md 类）：创作流程 / 砍装饰留行为 / 减法与漂移对照
+- [liya-sillytavern-cards](https://github.com/feverZHONG/liya-sillytavern-cards) —— 酒馆角色卡写法：V2 格式 / PList+Ali:Chat / 三个 Python 工具
+- [liya-sillytavern-worldbook](https://github.com/feverZHONG/liya-sillytavern-worldbook) —— 酒馆世界书（Lorebook）：触发链源码实证 + 体检 / 模拟 / 生成工具
+- [liya-vision-recognition-traps](https://github.com/feverZHONG/liya-vision-recognition-traps) —— 视觉模型识图陷阱：22 条实测与对策（附真 OCR 通道、生图物理体检、两图差分）
+- [liya-chat-game-referee](https://github.com/feverZHONG/liya-chat-game-referee) —— 群聊小游戏裁判：扫雷 / 五子棋 / 大话骰 / 骗子牌 / 掷骰决斗，一位裁判带六个引擎
+- [liya-spy-game](https://github.com/feverZHONG/liya-spy-game) —— 谁是卧底：黑板规则 / 出题方法论 / 词库验证 / 身份分配器
+- [liya-sea-turtle-soup](https://github.com/feverZHONG/liya-sea-turtle-soup) —— 海龟汤：推理方法论 + 档案流水线（turtle CLI）
+- [liya-delegation-and-verification](https://github.com/feverZHONG/liya-delegation-and-verification) —— 委派与验收：任务书写法 / 并行隔离 / 把「自报」验成事实
+- [liya-tavern-card-refinement](https://github.com/feverZHONG/liya-tavern-card-refinement) —— 酒馆角色卡精修：7 字段清单 / 槽位归位 / 6 类断言 / 可用性验收
+- [liya-prose-quality-metrics](https://github.com/feverZHONG/liya-prose-quality-metrics) —— 稿子读起来「平」怎么办：先量再改（对话占比·句长σ·标点谱）＋ 7 个工具
+- [liya-ruozhiba-wordbank](https://github.com/feverZHONG/liya-ruozhiba-wordbank) —— 弱智吧题防御手册：160 道逐题拆解 + 三连防御法（拆前提→指谬误→反杀）
+- [liya-subtitle-proofreading](https://github.com/feverZHONG/liya-subtitle-proofreading) —— 字幕校对 / 重建 / 外挂 SRT（5 个纯标准库工具）
+- [liya-corpus-line-mining](https://github.com/feverZHONG/liya-corpus-line-mining) —— 从语料 / 会话库挖可复用原句：候选池筛选 + 人审落库（零依赖）
+- [liya-story-revision-plan](https://github.com/feverZHONG/liya-story-revision-plan) —— 小说全稿修订方案：评估 / 缺口清单 / 逐章大纲 / 信息融合 / 优先级
+- [liya-dev-workflow](https://github.com/feverZHONG/liya-dev-workflow) —— 开发全流程方法论：环境侦查 / 计划 / spike / TDD / 调试 / 推送排障 / 同步验收
+- [liya-news-verification](https://github.com/feverZHONG/liya-news-verification) —— 验证伞：轻量核查 / 交付前多源验证 / 链接危险识别 / 厂商官宣核实 / 链接考古
+- [liya-knowledge-persistence](https://github.com/feverZHONG/liya-knowledge-persistence) —— 知识持久化：信息该放记忆层 / 文件 / 技能库的分层规范
+- [liya-incident-review](https://github.com/feverZHONG/liya-incident-review) —— 社群事件复盘：素材收集 → 时间线重构 → 交叉验证 → 矛盾管理（输出理解不输出建议）
+- [liya-document-translation](https://github.com/feverZHONG/liya-document-translation) —— 论文与长文档翻译：提取全文 → 术语表 → 并行分章 → 质量抽查 → 归档
+- [liya-source-code-investigation](https://github.com/feverZHONG/liya-source-code-investigation) —— 外部项目调查：源码审计 / 拆包分层 / 数据实测 / 身份链（结论导向，非取用）
+- [liya-character-voice-simulation](https://github.com/feverZHONG/liya-character-voice-simulation) —— 角色声线推演：锚点表双向用——分队推演（隔离上下文）＋ 反查认说话人
 
 ---
 
