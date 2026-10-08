@@ -222,6 +222,15 @@ def main():
         except Exception as e:
             results.append(("卡导出字段映射", False, f"异常: {e}"))
 
+        # 14 引擎状态层口径（06 自带 --selftest：冷却窗 / 缺键沿用 / 兜底不抛）
+        try:
+            rc, out = run("06_生成引擎.py", "--selftest")
+            ok_state = rc == 0 and "全部通过" in out
+            results.append(("引擎状态层口径", ok_state,
+                            "冷却窗/缺键沿用/兜底" if ok_state else "06 --selftest 未过"))
+        except Exception as e:
+            results.append(("引擎状态层口径", False, f"异常: {e}"))
+
     passed = sum(1 for _, ok, _ in results if ok)
     total = len(results)
     if not args.quiet:

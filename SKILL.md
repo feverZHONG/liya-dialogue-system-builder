@@ -46,7 +46,7 @@ dlg gen <角色>                                    # 工作台里生成，默�
 python3 toolkit/台词系统/06_生成引擎.py 配置.json -o 引擎.py   # 或直接调脚本
 ```
 
-生成零依赖 engine.py，`reply(context)` 返回台词：格子命中 → 变体轮换取最少使用的那条；未命中 → 模板兜底 + 变量注入（context 有值用 context，没有随机）。引擎自带演示 main，`python3 engine.py` 可直跑验证。
+生成零依赖 engine.py，`reply(context)` 返回台词：格子命中 → **状态层选句**（冷却窗 + 加权随机：同句短时不重复，同格出场顺序不是死循环）；未命中 → 模板兜底 + 变量注入（context 有值用 context，没有随机）。**状态层还含上下文沿用**——这次没给的维度记得上次的值，所以只给「场景」也能命中（从前必掉兜底）；要重置调 `引擎.reset()`，冷却窗大小用配置 `"state": {"cooldown": 2}`。引擎自带演示 main，`python3 engine.py` 可直跑验证。
 
 ### Step 5 验证覆盖率
 
