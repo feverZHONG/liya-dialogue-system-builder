@@ -177,7 +177,7 @@ def build_card(role, cfg, rule, genre, extra_tags, per_cell, max_examples) -> tu
         "post_history_instructions": post_hist,
         "alternate_greetings": [],
         "tags": tags,
-        "creator": "莉娅",
+        "creator": "feverZHONG",
         "character_version": "0.1",
         "extensions": {
             "talkativeness": 0.5,
