@@ -99,6 +99,7 @@ git clone https://github.com/feverZHONG/liya-dialogue-system-builder.git <你的
 - [liya-source-code-investigation](https://github.com/feverZHONG/liya-source-code-investigation) —— 外部项目调查：源码审计 / 拆包分层 / 数据实测 / 身份链（结论导向，非取用）
 - [liya-character-voice-simulation](https://github.com/feverZHONG/liya-character-voice-simulation) —— 角色声线推演：锚点表双向用——分队推演（隔离上下文）＋ 反查认说话人
 - [liya-md-link-maintenance](https://github.com/feverZHONG/liya-md-link-maintenance) —— Markdown 文档库搬家与断链修复：git mv 保历史 / 断链自动修 / 收尾全量校验
+- [liya-technical-report-audit](https://github.com/feverZHONG/liya-technical-report-audit) —— 第三方技术报告审计：事实项打官方源 / 判断项算术对账 / 200 兜底基线 / 只读核查清单
 
 ---
 
